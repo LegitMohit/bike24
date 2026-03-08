@@ -1,4 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-montserrat: 'Montserrat', sans-serif;
+  --color-primary-blue: #3B82F6;
+  --radius-xl: 12px;
+}
 
 :root {
   --primary: #3B82F6;
@@ -9,50 +16,77 @@
   --font-main: 'Montserrat', sans-serif;
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    @apply font-sans bg-white text-gray-800 leading-relaxed antialiased flex justify-center items-center min-h-screen overflow-x-hidden;
+    font-family: var(--font-main);
+  }
+
+  #root {
+    @apply w-full max-w-[500px] h-screen flex flex-col;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-bold tracking-tight;
+    font-family: var(--font-main);
+  }
+
+  button {
+    @apply cursor-pointer border-none bg-none transition-all duration-200 active:scale-95;
+    font-family: inherit;
+  }
 }
 
-body {
-  font-family: var(--font-main);
-  background-color: var(--bg);
-  color: var(--text);
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
+@layer utilities {
+  .animate-in {
+    opacity: 0;
+    animation-duration: 1000ms;
+    animation-fill-mode: both;
+  }
 
-#root {
-  width: 100%;
-  max-width: 500px;
-  /* Mobile centric limit */
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
+  .fade-in {
+    animation-name: fade-in;
+  }
 
-h1,
-h2,
-h3 {
-  font-family: var(--font-main);
-  font-weight: 700;
-  letter-spacing: -0.01em;
-}
+  .slide-in-from-bottom-4 {
+    animation-name: slide-in-from-bottom;
+  }
 
-button {
-  cursor: pointer;
-  border: none;
-  background: none;
-  font-family: inherit;
-  transition: all 0.2s ease;
-}
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
 
-button:active {
-  transform: scale(0.98);
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-in-from-bottom {
+    from {
+      transform: translateY(16px);
+      opacity: 0;
+    }
+
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .delay-500 {
+    animation-delay: 500ms;
+  }
 }

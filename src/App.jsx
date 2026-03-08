@@ -2,14 +2,15 @@ import React from 'react';
 import Layout from './components/Layout';
 import Logo from './components/Logo';
 import Button from './components/Button';
-import './styles/App.css';
 
 function App() {
   return (
     <Layout>
-      <Logo />
+      <div className="animate-in fade-in slide-in-from-bottom-4 duration-1000">
+        <Logo />
+      </div>
 
-      <div className="button-group">
+      <div className="w-full flex flex-col gap-5 px-2.5 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-200">
         <Button variant="primary">
           Get Started
         </Button>
@@ -18,7 +19,7 @@ function App() {
         </Button>
       </div>
 
-      <p className="footer-text">
+      <p className="text-sm font-medium text-gray-500 mt-2.5 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-500">
         Trusted by 10,000+ sellers
       </p>
     </Layout>
