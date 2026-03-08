@@ -29,7 +29,7 @@ const CreateAccount = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('Form submitted:', formData);
-        // Add registration logic here
+        navigate('/verify', { state: { phoneNumber: formData.phoneNumber } });
     };
 
     return (
