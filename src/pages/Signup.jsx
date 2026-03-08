@@ -4,7 +4,7 @@ import Input from '../components/Input';
 import Button from '../components/Button';
 import PageHeader from '../components/PageHeader';
 
-const CreateAccount = () => {
+const Signup = () => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         fullName: '',
@@ -147,4 +147,4 @@ const CreateAccount = () => {
     );
 };
 
-export default CreateAccount;
+export default Signup;
