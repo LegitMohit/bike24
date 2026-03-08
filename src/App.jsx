@@ -5,6 +5,7 @@ import Landing from './pages/Landing';
 import Home from './pages/Home';
 import CreateAccount from './pages/CreateAccount';
 import VerifyPhone from './pages/VerifyPhone';
+import Sell from './pages/Sell';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/create-account" element={<CreateAccount />} />
         <Route path="/verify" element={<VerifyPhone />} />
+        <Route path="/sell" element={<Sell />} />
       </Routes>
     </Layout>
   );

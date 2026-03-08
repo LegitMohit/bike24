@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import PageHeader from '../components/PageHeader';
 import { HiHome, HiPlus, HiChartBar, HiUser } from 'react-icons/hi2';
-import submissions from '../data/submissions.json';
+import seedSubmissions from '../data/submissions.json';
 
 const Home = () => {
+    const navigate = useNavigate();
+    const [submissions, setSubmissions] = useState([]);
 
+    useEffect(() => {
+        const local = JSON.parse(localStorage.getItem('bike24_submissions') || '[]');
+        // Seed entries first, then user submissions (newest appear at bottom)
+        setSubmissions([...seedSubmissions, ...local]);
+    }, []);
     return (
         <div className="flex flex-col h-screen bg-gray-50 overflow-hidden relative">
             {/* Header */}
@@ -21,7 +29,7 @@ const Home = () => {
                         </h2>
                         <p className="text-gray-500 text-sm mt-1">Ready to sell your bike?</p>
                     </div>
-                    <button className="bg-primary-blue text-white px-4 py-2.5 rounded-2xl font-bold text-sm flex items-center gap-1 shadow-md hover:bg-blue-600 transition-colors">
+                    <button onClick={() => navigate('/sell')} className="bg-primary-blue text-white px-4 py-2.5 rounded-2xl font-bold text-sm flex items-center gap-1 shadow-md hover:bg-blue-600 transition-colors">
                         Sell Now <HiPlus className="text-lg" />
                     </button>
                 </div>
@@ -62,7 +70,7 @@ const Home = () => {
                     <span className="text-[10px] font-bold text-primary-blue">Home</span>
                 </div>
 
-                <div className="flex flex-col items-center gap-1 group cursor-pointer text-gray-300">
+                <div onClick={() => navigate('/sell')} className="flex flex-col items-center gap-1 group cursor-pointer text-gray-300">
                     <div className="p-2.5 bg-gray-50 rounded-2xl transition-all duration-300 group-hover:bg-blue-50 group-hover:text-primary-blue">
                         <HiPlus className="text-2xl" />
                     </div>
