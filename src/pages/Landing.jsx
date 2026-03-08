@@ -16,7 +16,7 @@ const Landing = () => {
                 <Button variant="primary" onClick={() => navigate('/signup')}>
                     Get Started
                 </Button>
-                <Button variant="secondary">
+                <Button variant="secondary" onClick={() => navigate('/login')}>
                     I have an account
                 </Button>
             </div>

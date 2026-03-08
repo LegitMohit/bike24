@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Signup from './pages/Signup';
 import VerifyPhone from './pages/VerifyPhone';
 import Sell from './pages/Sell';
+import Login from './pages/Login';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/verify" element={<VerifyPhone />} />
         <Route path="/sell" element={<Sell />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </Layout>
   );

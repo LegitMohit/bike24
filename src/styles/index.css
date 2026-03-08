@@ -82,6 +82,25 @@
     }
   }
 
+  @keyframes toast-slide-right {
+
+    0%,
+    100% {
+      transform: translateX(120%);
+      opacity: 0;
+    }
+
+    10%,
+    90% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  .animate-toast {
+    animation: toast-slide-right 3s ease-in-out forwards;
+  }
+
   .delay-200 {
     animation-delay: 200ms;
   }

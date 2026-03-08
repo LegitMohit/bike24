@@ -1,12 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import PageHeader from '../components/PageHeader';
 import { HiHome, HiPlus, HiChartBar, HiUser } from 'react-icons/hi2';
 import seedSubmissions from '../data/submissions.json';
 
 const Home = () => {
     const navigate = useNavigate();
+    const location = useLocation();
     const [submissions, setSubmissions] = useState([]);
+    const [showToast, setShowToast] = useState(false);
+
+    useEffect(() => {
+        if (location.state?.loginSuccess) {
+            setShowToast(true);
+            window.history.replaceState({}, document.title);
+            const timer = setTimeout(() => setShowToast(false), 3000);
+            return () => clearTimeout(timer);
+        }
+    }, [location]);
 
     useEffect(() => {
         const local = JSON.parse(localStorage.getItem('bike24_submissions') || '[]');
@@ -15,6 +26,17 @@ const Home = () => {
     }, []);
     return (
         <div className="flex flex-col h-screen bg-gray-50 overflow-hidden relative">
+            {/* Success Toast */}
+            {showToast && (
+                <div className="fixed top-6 right-4 z-[60] animate-toast">
+                    <div className="bg-emerald-500 text-white px-5 py-3 rounded-2xl shadow-xl flex items-center gap-2 ">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span className="font-bold text-sm whitespace-nowrap">Success! Logged in.</span>
+                    </div>
+                </div>
+            )}
             {/* Header */}
             <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-[450px] z-50">
                 <PageHeader title="My Bikes" subtitle="BikeAuction" />
