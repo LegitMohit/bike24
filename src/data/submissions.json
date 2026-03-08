@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "name": "Honda Activa 6G",
+        "year": "2021",
+        "info": "Submitted 2 days ago",
+        "bid": "1,35,000",
+        "status": "UNDER INSPECTION",
+        "statusColor": "text-orange-500 border-orange-200 bg-white",
+        "cardBg": "bg-orange-50/30 border-orange-100"
+    },
+    {
+        "id": 2,
+        "name": "Royal Enfield Classic 350",
+        "year": "2025",
+        "info": "Submitted 3 days ago",
+        "bid": "1,35,000",
+        "status": "AUCTION LIVE",
+        "statusColor": "text-blue-500 border-blue-200 bg-white",
+        "cardBg": "bg-blue-50/30 border-blue-100"
+    }
+]

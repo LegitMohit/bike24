@@ -50,6 +50,7 @@ const VerifyPhone = () => {
         if (otpValue.length === 6) {
             console.log('Verifying OTP:', otpValue);
             // Add verification logic here
+            navigate('/home');
         }
     };
 
