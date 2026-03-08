@@ -17,8 +17,43 @@ const CreateAccount = () => {
     const handleChange = (e) => {
         const { name, value } = e.target;
 
-        // Limit phone number to 10 digits
-        if (name === 'phoneNumber' && value.length > 10) return;
+        if (name === 'phoneNumber') {
+            // Extract only the actual digits the user typed (after common prefixes)
+            let digits = value.replace(/\D/g, '');
+
+            // Handle clearing the field
+            if (value === '' || (value === '+' || value === '+9' || value === '+91')) {
+                setFormData(prev => ({ ...prev, [name]: '' }));
+                return;
+            }
+
+            // Logic to strip the internal '91' if it's from the +91 prefix
+            // If the field already had +91 and digits starts with 91, it's likely the prefix we extracted
+            if (digits.startsWith('91')) {
+                // Only strip if there are more digits or if the input actually contains '+91'
+                if (digits.length > 2 || value.includes('+91')) {
+                    digits = digits.substring(2);
+                }
+            }
+
+            // Limit to 10 user-entered digits
+            digits = digits.substring(0, 10);
+
+            // Reconstruct formatted string
+            let formatted = '';
+            if (digits.length > 0) {
+                formatted = '+91 ' + digits.substring(0, 5);
+                if (digits.length > 5) {
+                    formatted += ' ' + digits.substring(5);
+                }
+            } else if (value.includes('+91')) {
+                // If they are backspacing through the digits but haven't cleared the prefix entirely
+                formatted = '+91 ';
+            }
+
+            setFormData(prev => ({ ...prev, [name]: formatted }));
+            return;
+        }
 
         setFormData(prev => ({
             ...prev,
@@ -60,10 +95,10 @@ const CreateAccount = () => {
                         label="Phone Number"
                         name="phoneNumber"
                         type="tel"
-                        placeholder="9876543210"
+                        placeholder="+91 98765 43210"
                         value={formData.phoneNumber}
                         onChange={handleChange}
-                        maxLength={10}
+                        maxLength={15}
                     />
                 </div>
 
